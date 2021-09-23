@@ -21,15 +21,6 @@ function digitCount(num) {
     return text.split(",")
 }
 
-function encode(password, text) {
-    const cipher = crypto.createCipher('aes256', password);
-    return Buffer.from(cipher.update(text, 'utf8', 'hex') + cipher.final('hex')).toString('base64');
-}
-function decode(password, encrypted) {
-    const decipher = crypto.createDecipher('aes256', password);
-    return decipher.update(Buffer.from(encrypted, 'base64').toString('ascii'), 'hex', 'utf8') + decipher.final('utf8');
-}
-
 const Color = {
     Reset: "\x1b[0m",
     Bright: "\x1b[1m",
@@ -100,13 +91,12 @@ function get_keywords(query) {
 }
 
 class Database {
-    constructor(file_db, default_value = [], generate = true, option = {}) {
+    constructor(file_db, default_value = [], generate = true) {
         const fix_file_db = file_db.substr(0, file_db.lastIndexOf(".")) + ".json"; // only json extension
         // declare
         this.file_db = fix_file_db;
         this.default_value = default_value;
         this.generate = generate;
-        this.option = option;
         //
         if (!fs.existsSync(fix_file_db)) {
             if (Array.isArray(default_value)) {
@@ -645,63 +635,10 @@ class Database {
 }
 
 
-// ===========================================================================================
-/**
- * Ssstttttt.........
- * Next Project :D
- */
-
-// class DataKey {
-//     constructor(folder_target) {
-//         // declare
-//         this.folder_target = folder_target;
-//         //
-//         if (folder_target !== __dirname) {
-//             if (!fs.existsSync(folder_target)) {
-//                 fs.mkdir(folder_target, () => {
-//                     print("Folder is created!", "success");
-//                 });
-//             } else {
-//                 print("Folder is connected!", "success");
-//             }
-//         } else {
-//             print("target folder cannot be the same as connection file!", "error");
-//             process.exit() // wajib ini
-//         }
-//     }
-//     createFile(path_file, result) {
-
-//     }
-//     deleteFile(path_file, result) {
-
-//     }
-//     // CRUD
-//     addKey(path_file, key_object, result) {
-
-//     }
-//     readFile(path_file, result) {
-
-//     }
-//     updateKey(path_file, key_object, result) {
-
-//     }
-//     deleteKey(path_file, key_object, result) {
-
-//     }
-// }
-
 
 // ===========================================================================================
 
-/**
- * Single Module (skip)
- */
+
+
 const myModule = module.exports = Database;
 myModule.generateRandomString = generateRandomString;
-
-// module.exports = {
-//     generateRandomString,
-//     //
-//     Database,
-//     DataKey,
-// }
