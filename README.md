@@ -4,7 +4,7 @@
 
 [![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fjefripunza-youtube-channel-badge.vercel.app%2Fapi%2Fsubscriber)](https://www.youtube.com/user/jefripunza/videos/)
 [![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fjefripunza-youtube-channel-badge.vercel.app%2Fapi%2Fviews)](https://www.youtube.com/user/jefripunza/videos/)
-[![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fjefripunza-youtube-channel-badge.vercel.app%2Fapi%2Fcomments)](https://www.youtube.com/user/jefripunza/videos/)
+<!-- [![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fjefripunza-youtube-channel-badge.vercel.app%2Fapi%2Fcomments)](https://www.youtube.com/user/jefripunza/videos/) -->
 [![Custom badge](https://img.shields.io/endpoint?style=for-the-badge&url=https%3A%2F%2Fjefripunza-youtube-channel-badge.vercel.app%2Fapi%2Fvideos)](https://www.youtube.com/user/jefripunza/videos/)
 
 # Donate
@@ -104,6 +104,7 @@ const database = new Database(file_path_db, defaule_array, true);
 ```javascript
 //  request argument :
 //      new_data = (array)
+
 database.add(new_data, result => {
     console.log(result);
 });
@@ -122,7 +123,7 @@ console.log(database.readAll());
 #### read one data
 ```javascript
 //  request argument :
-        select_data = single _id ? (string|int) : (object) # key => match value
+//      select_data = single _id ? (string|int) : (object) # key => match value
         
 // single _id (string|int)
 console.log(database.one(key_id));
@@ -307,7 +308,14 @@ console.log(database.searchWithPagination({
 
 
 
-<br />
+
+
+
+
+
+
+
+
 
 # Support the project
 
