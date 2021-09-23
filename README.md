@@ -42,13 +42,12 @@ Seiring berjalannya waktu, pengelolaan database memang cukup rumit bagi orang-or
 Tidak terlalu rumit untuk inisial awal, cukup copy saja file <b>connection.js</b> nya kedalam project anda lalu di import dan langsung bisa digunakan
 ##### key system
 ```txt
-key system :
-    _id = primary key
-    _create_at = kapan dibuat (timestamp)
-    _modified_at = kapan terakhir dirubah (timestamp)
-    _modified_history = history modifikasi data (array)
-    _deleted_at = menghapus sementara (tidak permanen) data dari list
-    _SEO = untuk keperluan SEO
+_id               = primary key
+_create_at        = kapan dibuat (timestamp)
+_modified_at      = kapan terakhir dirubah (timestamp)
+_modified_history = history modifikasi data (array)
+_deleted_at       = menghapus sementara (tidak permanen) data dari list
+_SEO              = untuk keperluan SEO
 ```
 
 ---
@@ -57,52 +56,249 @@ key system :
 
 # PENGGUNAAN
 
-## Cara Membuka Panel WhatsApp BOT
+### First Time
 
-### 1. Start Aplikasi didalam Termux (Ubuntu)
-#### jika anda berada diluar ubuntu environtment
-I. Masuk ke ubuntu environtment
-```bash
-cd && ./start-ubuntu.sh
-```
-II. Start Aplikasi
-```bash
-cd && nodemon
-```
-#### jika anda berada didalam ubuntu environtment (Linux Desktop)
-```bash
-cd && nodemon
+#### import library require and this module
+```javascript
+const path = require("path");
+const Database = require("path/to/connection");
 ```
 
-### 2. Lihatlah IP:PORT lokal anda
+#### set file path & initial database
+```javascript
+// file path json, if not exist ? auto create file json
+const file_path_db = path.join(__dirname, "test.txt"); // test.txt akan otomatis menjadi test.json
 
-### 3. Buka IP:PORT di Browser HP (hanya bisa dibuka di HP)
+// for debug
+const defaule_array = [
+    {
+        nama: "Jefri Herdi Triyanto",
+        kelas: "webdev",
+        hobi: "ngoding",
+    },
+    {
+        nama: "Jack Unch Paijo",
+        kelas: "mlongo",
+        hobi: "mancing",
+    },
+];
 
-### 4. Login pada Panel
-password default :
-```bash
-12345678
+//  request argument :
+//      file_path_db  = nama file (dir_path + name) dan variabel database
+//      default_value = nilai awal jika file database belum ada
+//      generate      = membuat _id baru di setiap add data (default : true), true ? generateRandomString : integer auto increments
+
+// Standar init (default)
+const database = new Database(file_path_db);
+
+// Standar init + default value (only array)
+const database = new Database(file_path_db, defaule_array);
+
+// Standar init + default value (only array) + generate
+const database = new Database(file_path_db, defaule_array, true);
 ```
-bisa anda rubah passwordnya pada file <b>password</b>
 
-<br />
+### CRUD
 
-## Cara Scan Barcode (untuk pertama kali/new session)
+#### add data
+```javascript
+//  request argument :
+//      new_data = (array)
+database.add(new_data, result => {
+    console.log(result);
+});
+```
 
-### 1. Harus menggunakan 2 HP
-Hape ke 1 adalah <b>pemilik Whatsapp</b> dan Hape ke 2 adalah bertugas untuk <b>login panel & view barcode</b>
+#### read all list data (not delete)
+```javascript
+console.log(database.read());
+```
 
-### 2. Tunggu sampai aplikasi mendapatkan session
-setelah mendapatkan session maka akan otomatis merubah tampilan ke dalam panel
+#### read all list data (with delete)
+```javascript
+console.log(database.readAll());
+```
 
-<br />
+#### read one data
+```javascript
+//  request argument :
+        select_data = single _id ? (string|int) : (object) # key => match value
+        
+// single _id (string|int)
+console.log(database.one(key_id));
 
-## Cara menambah Balasan Chat WhatsApp
-1. klik tombol <b>Tambah Balasan</b>
-2. isi inputan untuk <b>menerima</b> dan <b>balasan</b>
-3. setelah itu klik tombol <b>Tambah</b>
+// multi select (object)  # key => match value
+console.log(database.one({
+    name: value,
+}));
+```
 
-Selebihnya anda bisa merubah data dan menghapusnya. Semua yang tersimpan akan dieksekusi jika <b>menerima</b> pesan yang sesuai dengan data yang ada.
+#### update data
+```javascript
+//  ketika merubah maka akan menambahkan 2 meta :
+//      _modified_at        = waktu merubah (timestamp)
+//      _modified_history   = data sebelumnya (array)
+
+//  request argument :
+//      select _id      = _id (string|int) 
+//      new_data_object = new data => key => new value
+
+database.update(key_id, {
+    description: Database.generateRandomString(30), // function extra to rendom string with length
+}, result => {
+    console.log(result);
+});
+```
+
+#### delete data (non permanent)
+```javascript
+//  request argument :
+//      select _id = _id (string|int)
+
+database.delete(key_id, result => {
+    console.log(result);
+});
+```
+
+#### delete key from data
+```javascript
+//  request argument :
+//      select _id = _id (string|int)
+//      select key = key yang ada didalam data (array)
+
+database.deleteKey(key_id, [
+    "_id", // tidak akan terhapus
+    "id",
+    "price",
+], result => {
+    console.log(result);
+});
+```
+
+#### clear all data
+```javascript
+database.clearAllData(true, true, true, result => {
+    console.log(result);
+});
+```
+
+### Extra
+
+#### Length of data
+```javascript
+console.log(database.length());
+```
+
+### Trash
+
+#### list trash data
+```javascript
+console.log(database.trash());
+```
+
+### Super Function
+
+#### search engine
+```javascript
+//  request argument :
+//      select key (object) = pilih key yang value nya ingin di cari
+
+//  keterangan :
+//      nilai paling atas adalah score tertinggi dari pencarian
+//      atau jika menggunakan addon SEO maka yang paling atas adalah data SEO
+ 
+//  meta result :
+//      time        = waktu mencari data pada database (second)
+//      score       = nilai pencarian dari isi data (select key -> value)
+//      result      = list data dari score terbaik sampai terendah
+//      percentage  = nilai rekap dari setiap key yang di select
+//      data        = real data
+
+// for test
+const keyword = "and or on for in is woman";
+
+// execute
+const result = database.search({
+    description: keyword,
+    title: keyword,
+    category: keyword,
+});
+
+// default result
+console.log(result);
+
+// normal result
+console.log(result.result.map(data => {
+    return data.data
+}));
+```
+
+#### pagination
+```javascript
+//  request argument :
+//      show = berapa data yang ingin ditampilkan (int)
+//      page = sekarang dihalaman berapa (int)
+//      button_page = jumlah alinyemen button (auto alinyemen jika data diakhir) (int)
+//          ex  : jika nilainya 2  =   [1] - [2] - [center] - [1] - [2]
+//              : jika nilainya 1  =   [1] - [center] - [1]
+
+//  meta pagination :
+//      min         = nilai terkecil yang ditampilkan
+//      max         = nilai terbesar yang ditampilkan
+//      page        = halaman sekarang
+//      button      = tombol pagination (auto generate)
+//      totalRow    = total dari semua data
+//      row         = list data
+
+console.log(database.pagination(show, page, button_page));
+```
+
+### Addon
+
+#### SEO managements
+```javascript
+//  request argument :
+//      select _id = _id (string|int)
+//      nilai SEO = (only integer), range ? unlimited integer
+
+// add score SEO
+database.addSEO(key_id, score, result => {
+    console.log(result);
+});
+
+// list SEO only
+console.log(database.listSEO());
+
+// update score SEO
+database.updateSEO(key_id, score, result => {
+    console.log(result);
+});
+
+// delete SEO (not data, only SEO)
+database.deleteSEO(key_id, result => {
+    console.log(result);
+});
+```
+
+### Combine Function
+
+#### Search + Pagination
+```javascript
+//  request argument :
+//      select key (object) = pilih key yang value nya ingin di cari
+//      show = berapa data yang ingin ditampilkan
+//      page = sekarang dihalaman berapa
+//      button_page = jumlah alinyemen button
+
+// for test
+const keyword = "and or on for in is woman";
+
+console.log(database.searchWithPagination({
+    description: keyword,
+    title: keyword,
+    category: keyword,
+}, show, page, button_page));
+```
 
 <br />
 
