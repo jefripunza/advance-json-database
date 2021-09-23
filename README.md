@@ -40,47 +40,22 @@ Seiring berjalannya waktu, pengelolaan database memang cukup rumit bagi orang-or
 # PERSIAPAN
 
 Tidak terlalu rumit untuk inisial awal, cukup copy saja file <b>connection.js</b> nya kedalam project anda lalu di import dan langsung bisa digunakan
-
-## 1. install <b>Termux</b>
-
-Download dan install Aplikasi Android Termux dengan cara <a href="https://f-droid.org/repo/com.termux_117.apk" target="_blank" rel="norefferer">klik disini!</a> <br/>
-
-<br />
-
-## 2. install <b>Ubuntu Desktop Environment</b>
-
-### Copy dan Paste di dalam terminal Termux
-pada bagian ini membutuhkan waktu estimasi sekitar 20-30 menit tergantung kecepatan internet dan performa perangkat masing-masing.
-```bash
-wget -qO - https://raw.githubusercontent.com/jefripunza/whatsapp-bot/main/create_ubuntu.sh | bash
+##### key system
+```txt
+key system :
+    _id = primary key
+    _create_at = kapan dibuat (timestamp)
+    _modified_at = kapan terakhir dirubah (timestamp)
+    _modified_history = history modifikasi data (array)
+    _deleted_at = menghapus sementara (tidak permanen) data dari list
+    _SEO = untuk keperluan SEO
 ```
-
-### Setelah selesai menginstall <b>Ubuntu Desktop Environment</b>, masuk kedalam Environment nya...
-
-```bash
-./start-ubuntu.sh
-```
-<br />
-
-## 3. install <b>All Requirements</b> in Ubuntu
-
-### Copy dan Paste di dalam terminal Termux (Ubuntu)
-
-```bash
-wget -qO - https://raw.githubusercontent.com/jefripunza/whatsapp-bot/main/install.sh | bash
-```
-
-<br />
 
 ---
 <br />
 
 
 # PENGGUNAAN
-
-Didalam penggunaannya <b>"WhatsApp BOT"</b> hal yang paling pertamakali dilakukan adalah <b>Scan Barcode</b> pada Panel.
-
-<br />
 
 ## Cara Membuka Panel WhatsApp BOT
 
