@@ -15,7 +15,7 @@
         "app"
     ],
     "author": "Jefri Herdi Triyanto",
-    "license": "GPLv3",
+    "license": "GPL-3.0",
     "dependencies": {
         "axios": "^0.21.4",
         "express": "^4.17.1"
