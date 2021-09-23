@@ -37,6 +37,35 @@ Seiring berjalannya waktu, pengelolaan database memang cukup rumit bagi orang-or
 <br />
 <b></b>
 
+
+
+
+# TESTING
+untuk anda yang ingin mencoba perngalaman terbaik menggunakan module ini, silahkan ikuti step berikut ini :
+
+##### download this source
+```bash
+git clone https://github.com/jefripunza/advance-json-database
+```
+##### install node_modules
+```bash
+npm install
+```
+##### running test
+```bash
+node test
+
+// or
+
+npm start
+```
+
+---
+<br />
+
+
+
+
 # PERSIAPAN
 
 Tidak terlalu rumit untuk inisial awal, cukup copy saja file <b>connection.js</b> nya kedalam project anda lalu di import dan langsung bisa digunakan
