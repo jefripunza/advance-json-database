@@ -51,6 +51,9 @@ git clone https://github.com/jefripunza/advance-json-database
 ```bash
 npm install
 ```
+
+buka file <b>test.js</b> dan ikuti perintah selanjutnya (indonesian language)
+
 ##### running test
 ```bash
 node test
