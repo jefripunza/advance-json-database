@@ -7,7 +7,7 @@ for (let i = 0; i < 20; i++) {
 const path = require("path"),
     axios = require("axios");
 // My Module
-const Database = require("../database/connection");
+const Database = require("./connection");
 
 // ==========================================================
 // KETERANGAN (README)
@@ -386,7 +386,6 @@ const result = database.search({
 
 
 
-
 /**
  * Mohon bantu tambah bintang / add star di project ini, arigato.....
  */
@@ -396,18 +395,4 @@ const result = database.search({
 
 
 
-/**
- * Skip Project
- */
-// // ==========================================================
-// // ==========================================================
-// /**
-//  * DataKey
-//  * database dengan file json mandiri dari dalam folder terpilih
-//  * 
-//  * uncomment Database init diatas agar tidak mengganggu CLI
-//  */
-// // ==========================================================
-// // ==========================================================
 
-// // const datakey = new DataKey(path.join(__dirname, "test"));
