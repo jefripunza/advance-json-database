@@ -74,12 +74,12 @@ npm start
 Tidak terlalu rumit untuk inisial awal, cukup copy saja file <b>connection.js</b> nya kedalam project anda lalu di import dan langsung bisa digunakan
 ##### key system
 ```txt
-_id               = primary key
+_id               = primary key (string|int)
 _create_at        = kapan dibuat (timestamp)
 _modified_at      = kapan terakhir dirubah (timestamp)
 _modified_history = history modifikasi data (array)
-_deleted_at       = menghapus sementara (tidak permanen) data dari list
-_SEO              = untuk keperluan SEO
+_deleted_at       = menghapus sementara data dari list (tidak permanen)
+_SEO              = untuk keperluan SEO (integer)
 ```
 
 ---
