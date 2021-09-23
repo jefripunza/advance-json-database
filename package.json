@@ -1,37 +1,23 @@
 {
-    "name": "termuxwhatsappbot",
+    "name": "advance-json-database",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "test.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon",
-        "clean": "rm -rf node_modules",
-        "reinstall": "npm run clean && yarn install"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
-        "whatsapp",
-        "bot",
-        "youtube",
-        "brainly"
+        "advance",
+        "json",
+        "database",
+        "storage",
+        "website",
+        "app"
     ],
-    "author": "",
-    "license": "ISC",
+    "author": "Jefri Herdi Triyanto",
+    "license": "GPLv3",
     "dependencies": {
         "axios": "^0.21.4",
-        "body-parser": "^1.19.0",
-        "brainly-scraper": "^1.0.3",
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "figlet": "^1.5.2",
-        "helmet": "^4.6.0",
-        "morgan": "^1.10.0",
-        "qrcode": "^1.4.4",
-        "socket.io": "^4.2.0",
-        "webp-converter": "^2.3.3",
-        "whatsapp-web.js": "^1.14.1",
-        "youtubei": "^0.0.1-rc.24",
-        "ytdl-core": "^4.9.1",
-        "ytpl": "^2.2.3"
+        "express": "^4.17.1"
     }
 }
