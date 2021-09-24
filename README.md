@@ -128,6 +128,10 @@ const database = new Database(file_path_db, defaule_array);
 
 // Standar init + default value (only array) + generate
 const database = new Database(file_path_db, defaule_array, true);
+
+// if you want to multiply the table data then make another file connection
+const database_user = new Database(file_path_db_user);
+const database_post = new Database(file_path_db_post);
 ```
 
 ### CRUD
