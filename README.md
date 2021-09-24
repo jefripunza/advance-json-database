@@ -208,14 +208,14 @@ database.deleteKey(key_id, [
 });
 ```
 
-#### clear all data
+#### clear all data (dangerous)
 ```javascript
+// require multiple true (min 3) (for accept secure)
+
 database.clearAllData(true, true, true, result => {
     console.log(result);
 });
 ```
-
-### Extra
 
 #### Length of data
 ```javascript
@@ -226,6 +226,7 @@ console.log(database.length());
 
 #### list trash data
 ```javascript
+// only displays data that has been temporarily deleted
 console.log(database.trash());
 ```
 
@@ -292,7 +293,7 @@ console.log(database.pagination(show, page, button_page));
 ```javascript
 //  request argument :
 //      select _id = _id (string|int)
-//      nilai SEO = (only integer), range ? unlimited integer
+//      nilai SEO = (only integer), range = unlimited integer
 
 // add score SEO
 database.addSEO(key_id, score, result => {
